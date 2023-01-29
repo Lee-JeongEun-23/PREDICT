@@ -24,11 +24,10 @@ public class makeData {
 
 
           HashMap<Integer,Integer> temp1 = new HashMap<Integer,Integer>();
-          ArrayList<Integer> temp2 = new ArrayList<Integer>();
+         
           ArrayList<Integer> temp3 = new ArrayList<Integer>();
           
-          int it = 1050;
-          for(round = 1000; round <= 1051; round++) {
+         for(round = 1000; round <= 1052; round++) {
               URL url = new URL("https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo="+String.valueOf(round));
 
               BufferedReader bf;
@@ -37,6 +36,8 @@ public class makeData {
               
                JSONParser jsonParser = new JSONParser();
                JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
+              
+               ArrayList<Integer> temp2 = new ArrayList<Integer>();
                
                int num1 = Integer.parseInt(jsonObject.get("drwtNo1").toString()); //1번
                int num2  = Integer.parseInt(jsonObject.get("drwtNo2").toString()); //2번
@@ -45,7 +46,27 @@ public class makeData {
                int num5  = Integer.parseInt(jsonObject.get("drwtNo5").toString()); //5번
                int num6  = Integer.parseInt(jsonObject.get("drwtNo6").toString()); //6번
                
-               System.out.println(round + " : " + num1 + " " + num2 + " " + num3 + " " + num4 + " " + num5 + " " + num6 + " ");
+               //System.out.println(round + " : " + num1 + " " + num2 + " " + num3 + " " + num4 + " " + num5 + " " + num6 + " ");
+               
+               
+               temp2.add(num1);
+               temp2.add(num2);
+               temp2.add(num3);
+               temp2.add(num4);
+               temp2.add(num5);
+               temp2.add(num6);
+               
+               for(int i = 0; i < temp2.size(); i++) {
+            	   if(temp2.get(i) >= 40 && temp2.get(i) < 46) {
+            		   if(temp1.containsKey(temp2.get(i))) {
+            			   temp1.put(temp2.get(i), temp1.get(temp2.get(i))+1);
+            		   }else {
+            			   temp1.put(temp2.get(i), 1);
+            		   }
+            	   }
+               }
+               
+               
                /*
                if(round == it) {
                   temp2.add(num1);
@@ -80,7 +101,8 @@ public class makeData {
                */
 
           } //로또 데이터 가져오기 완료
-          
+         System.out.println(temp1); 
+         
        }catch(Exception e) {
           e.printStackTrace();
        }
