@@ -2,7 +2,9 @@ package service;
 
 public class CombiData {
     public static void main(String[] args) {
-        int[] arr = {2, 3, 5, 6, 7, 8, 9}; //조합을 만들 배열 
+    	
+
+        int[] arr = {41,42,44,45}; //조합을 만들 배열
         boolean[] visited = new boolean[arr.length];
         
         for(int r = 1; r <= arr.length ; r++) {

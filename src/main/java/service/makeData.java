@@ -20,14 +20,15 @@ public class makeData {
        int round = 0;
        try {//복권 공공 API 가져오기
 
-          int[] array = new int[45];
+    	  int[] array1 = {12,21,27,35,41,45};
+          int[] array2 = new int[6];
 
 
           HashMap<Integer,Integer> temp1 = new HashMap<Integer,Integer>();
          
           ArrayList<Integer> temp3 = new ArrayList<Integer>();
           
-         for(round = 1000; round <= 1052; round++) {
+         for(round = 1; round <= 1052; round++) {
               URL url = new URL("https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo="+String.valueOf(round));
 
               BufferedReader bf;
@@ -48,23 +49,18 @@ public class makeData {
                
                //System.out.println(round + " : " + num1 + " " + num2 + " " + num3 + " " + num4 + " " + num5 + " " + num6 + " ");
                
+               array2[0] = num1;
+               array2[1] = num2;
+               array2[2] = num3;
+               array2[3] = num4;
+               array2[4] = num5;
+               array2[5] = num6;
                
-               temp2.add(num1);
-               temp2.add(num2);
-               temp2.add(num3);
-               temp2.add(num4);
-               temp2.add(num5);
-               temp2.add(num6);
-               
-               for(int i = 0; i < temp2.size(); i++) {
-            	   if(temp2.get(i) >= 40 && temp2.get(i) < 46) {
-            		   if(temp1.containsKey(temp2.get(i))) {
-            			   temp1.put(temp2.get(i), temp1.get(temp2.get(i))+1);
-            		   }else {
-            			   temp1.put(temp2.get(i), 1);
-            		   }
-            	   }
+               if(Arrays.equals(array1, array2)) {
+            	   System.out.println(round+"----------------------------------");
+            	   System.out.println(Arrays.toString(array2)); 
                }
+               
                
                
                /*
@@ -101,7 +97,7 @@ public class makeData {
                */
 
           } //로또 데이터 가져오기 완료
-         System.out.println(temp1); 
+         System.out.println("finish"); 
          
        }catch(Exception e) {
           e.printStackTrace();

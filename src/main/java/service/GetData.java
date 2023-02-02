@@ -18,7 +18,7 @@ public class GetData {
        // 파싱한 데이터를 저장할 변수
        String result = "";
        try {//복권 공공 API 가져오기
-          for(int round = 2; round <= 1028; round++) {
+          for(int round = 1; round <= 1051; round++) {
               URL url = new URL("https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo="+String.valueOf(round));
 
               BufferedReader bf;
